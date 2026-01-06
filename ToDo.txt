@@ -1,0 +1,34 @@
+TO-DO
+
+- Implement routing on Frontend Components
+- Rename and refactor Frontend file names
+- 
+
+
+
+things done
+
+- refactor folders in backend
+- mongo connected
+	- what installed
+	- how configured
+	- things created / how created
+- Nodejs
+	- 
+	- 
+- Reactjs
+	- usestate
+	- useeffect
+	- routing
+
+
+Better Practices
+
+- .env file to keep sensitive info
+- implement backend in modular way : models, controllers, routers
+- scalable
+- extensible
+
+
+
+

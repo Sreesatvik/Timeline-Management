@@ -1,0 +1,19 @@
+:root {
+  --bg-glass: rgba(255, 255, 255, 0.12);
+  --border-glass: rgba(255, 255, 255, 0.25);
+  --blur: blur(12px);
+
+  --primary: #00c6ff;
+  --danger: #ff4d4f;
+  --success: #2ecc71;
+  --warning: #f39c12;
+
+  --text-main: #ffffff;
+  --text-muted: #cfd9e0;
+
+  --radius-lg: 18px;
+  --radius-md: 12px;
+
+  --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.25);
+  --shadow-hover: 0 16px 40px rgba(0, 0, 0, 0.4);
+}
