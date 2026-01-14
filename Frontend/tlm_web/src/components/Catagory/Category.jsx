@@ -1,3 +1,5 @@
+import React from "react";
+import { useRef } from "react";
 import "./styles.css";
 import { useState, useEffect } from "react";
 import Assignment from "../Assignment/assignment";
@@ -16,11 +18,18 @@ function Category({ title, description, onDelete, id, onUpdate }) {
   const [editTitle, setEditTitle] = useState(title);
   const [editDesc, setEditDesc] = useState(description);
 
-  /* ===== Fetch Assignments ===== */
-  useEffect(() => {
-    if (!id) return;
+  const scrollRef = useRef(null);
 
-    const fetchAssignments = async () => {
+const scrollLeft = () => {
+  scrollRef.current.scrollBy({ left: -300, behavior: "smooth" });
+};
+
+const scrollRight = () => {
+  scrollRef.current.scrollBy({ left: 300, behavior: "smooth" });
+};
+
+
+  const fetchAssignments = async () => {
       try {
         const response = await fetch(
           `http://localhost:5000/api/assignments/get_all_assignments?category_id=${id}`
@@ -32,11 +41,24 @@ function Category({ title, description, onDelete, id, onUpdate }) {
       }
     };
 
+  /* ===== Fetch Assignments ===== */
+  useEffect(() => {
+    if (!id) return;
     fetchAssignments();
   }, [id]);
 
   /* ===== Add Assignment ===== */
   const addAssignment = async () => {
+    
+    if (assignmentStartDate && assignmentEndDate && assignmentEndDate < assignmentStartDate) {
+      alert("Invalid Date Range");
+      return;
+    }
+    if(!assignmentStartDate && !assignmentEndDate){
+      alert("Please enter start and end date");
+      return;
+    }
+
     try {
       const response = await fetch(
         "http://localhost:5000/api/assignments/add_assignment",
@@ -53,9 +75,13 @@ function Category({ title, description, onDelete, id, onUpdate }) {
         }
       );
 
-      const data = await response.json();
-      setAssignments((prev) => [...prev, data]);
+      await fetchAssignments();
 
+      const data = await response.json();
+      if (!response.ok) {
+        alert(data.error);
+        return;
+      }
       setAssignmentTitle("");
       setAssignmentDesc("");
       setAssignmentStartDate("");
@@ -110,13 +136,15 @@ function Category({ title, description, onDelete, id, onUpdate }) {
     }
   };
 
-  const updateAssignment = (updatedAssignment) => {
+  const updateAssignment = async (updatedAssignment) => {
     setAssignments((prev) =>
       prev.map((a) =>
         a._id === updatedAssignment._id ? updatedAssignment : a
       )
     );
+    await fetchAssignments();
   };
+  
 
   return (
     <div className="category-wrapper">
@@ -242,20 +270,30 @@ function Category({ title, description, onDelete, id, onUpdate }) {
       </div>
 
       {/* ===== Assignments ===== */}
-      <div className="category-container">
-        {assignments.map((assignment) => (
-          <Assignment
-            key={assignment._id}
-            id={assignment._id}
-            title={assignment.title}
-            description={assignment.description}
-            startDate={assignment.startDate}
-            endDate={assignment.endDate}
-            onDeleteAssignment={removeAssignment}
-            onUpdateAssignment={updateAssignment}
-          />
-        ))}
-      </div>
+      <div className="assignment-scroll-wrapper">
+  <button className="scroll-btn left" onClick={scrollLeft}>
+    ◀
+  </button>
+
+  <div className="category-container" ref={scrollRef}>
+    {assignments.map((assignment) => (
+      <Assignment
+        key={assignment._id}
+        id={assignment._id}
+        title={assignment.title}
+        description={assignment.description}
+        startDate={assignment.startDate}
+        endDate={assignment.endDate}
+        onDeleteAssignment={removeAssignment}
+        onUpdateAssignment={updateAssignment}
+      />
+    ))}
+  </div>
+
+  <button className="scroll-btn right" onClick={scrollRight}>
+    ▶
+  </button>
+</div>
     </div>
   );
 }

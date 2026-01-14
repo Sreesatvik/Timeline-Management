@@ -1,11 +1,18 @@
+import React from "react";
+import { useRef } from "react";
 import "./styles.css";
 import { useEffect, useState } from "react";
-import Category from "../../components/Catagory/Category";
+import Category from "../../components/Catagory/Category.jsx";
 
 function Main() {
   const [categories, setCategories] = useState([]);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
+
+  const scrollRef = useRef(null);
+
+
+
 
   useEffect(() => {
     const fetchCategories = async () => {

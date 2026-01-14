@@ -5,8 +5,8 @@ const assignmentSchema = new Schema(
   {
     title: { type: String, default: "" },
     description: { type: String, default: "" },
-    startDate: { type: Date, default: null },
-    endDate: { type: Date, default: null },
+    startDate: { type: Date, required: true },
+    endDate: { type: Date, required: true },
     category_id: {
       type: Schema.Types.ObjectId,
       ref: "Category",
