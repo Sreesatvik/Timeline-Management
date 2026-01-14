@@ -1,5 +1,7 @@
+import React from "react";
 import "./styles.css";
-import { useState } from "react";
+import { useState} from "react";
+
 
 function Assignment({
   id,
@@ -22,6 +24,11 @@ function Assignment({
   );
 
   const saveEdit = async () => {
+
+    if (editStartDate && editEndDate && editEndDate < editStartDate) {
+    alert("Invalid Date Range");
+    return;
+  }
     try {
       const res = await fetch(
         `http://localhost:5000/api/assignments/update_assignment?id=${id}`,
@@ -54,10 +61,16 @@ function Assignment({
     <>
       {/* ===== Assignment Card ===== */}
       <div className="assignment-box upcoming">
-        <h4>{title}</h4>
+
+        <div className="assignment-dates">
+          <span className="date start"> 
+            {new Date(startDate).toLocaleDateString("en-GB", { day: '2-digit', month: 'short', year: 'numeric' })}
+          </span>
+          <span className="date end">{new Date(endDate).toLocaleDateString("en-GB", { day: '2-digit', month: 'short', year: 'numeric' })}</span>
+        </div>
+
+        <h2>{title}</h2>
         <p>{description}</p>
-        <p>Start: {startDate?.slice(0, 10)}</p>
-        <p>End: {endDate?.slice(0, 10)}</p>
 
         <div className="assignment-actions">
           <button onClick={() => setShowEditModal(true)}>✏️ Edit</button>

@@ -2,7 +2,6 @@
 import cors from "cors";
 import dotenv from "dotenv";
 import routes from "./routers/index.js";
-import kroutes from "./routers/assignments.js";
 import express from "express";
 import mongoose from "mongoose";
 

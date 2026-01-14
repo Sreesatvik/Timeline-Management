@@ -1,203 +1,36 @@
+/* ===============================
+   Assignment Card
+================================ */
 .assignment-box {
-  background: linear-gradient(180deg, #ffffff, #fafafa);
-  border-radius: 16px;
-  padding: 18px 20px;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-
-  border-left: 6px solid #2563eb;
-  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.08);
-
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-/* Hover lift */
-.assignment-box:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.15);
-}
-.assignment-box h4 {
-  font-size: 16px;
-  font-weight: 600;
-  color: #111827;
-  margin-bottom: 6px;
-}
-
-.assignment-box p {
-  font-size: 14px;
-  color: #6b7280;
-  margin-bottom: 8px;
-  line-height: 1.4;
-}
-.assignment-box p:nth-of-type(2),
-.assignment-box p:nth-of-type(3) {
-  font-size: 12px;
-  color: #475569;
-  margin-top: 6px;
-}
-.assignment-box button {
-  margin-top: auto;
-  padding: 8px 12px;
-  border-radius: 8px;
-  border: none;
-  font-size: 13px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.assignment-box button:first-of-type {
-  background: #2563eb;
-  color: white;
-  margin-right: 8px;
-}
-
-.assignment-box button:first-of-type:hover {
-  background: #1d4ed8;
-}
-
-.assignment-box button:last-of-type {
-  background: #fee2e2;
-  color: #b91c1c;
-}
-
-.assignment-box button:last-of-type:hover {
-  background: #fecaca;
-}
-.assignment-box input {
-  width: 100%;
-  padding: 10px 12px;
-  margin-bottom: 10px;
-  border-radius: 10px;
-  border: 1px solid #e5e7eb;
-  font-size: 14px;
-  transition: all 0.2s ease;
-}
-
-.assignment-box input:focus {
-  outline: none;
-  border-color: #2563eb;
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
-}
-.assignment-box button:nth-last-of-type(2) {
-  background: #16a34a;
-  color: white;
-}
-
-.assignment-box button:nth-last-of-type(2):hover {
-  background: #15803d;
-}
-
-.assignment-box button:last-of-type {
-  background: #f3f4f6;
-  color: #374151;
-}
-
-.assignment-box button:last-of-type:hover {
-  background: #e5e7eb;
-}
-/* ===== Modal Overlay ===== */
-.assignment-modal-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(15, 23, 42, 0.6);
-  backdrop-filter: blur(6px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
-}
-
-.assignment-modal-overlay.show {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-/* ===== Modal Card ===== */
-.assignment-modal {
   background: #ffffff;
-  width: 420px;
-  max-width: 92%;
-  border-radius: 16px;
-  padding: 24px;
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
-  animation: modalIn 0.3s ease;
-}
-
-@keyframes modalIn {
-  from {
-    opacity: 0;
-    transform: scale(0.92) translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1) translateY(0);
-  }
-}
-
-/* ===== Inputs ===== */
-.assignment-modal input,
-.assignment-modal textarea {
-  width: 100%;
-  padding: 12px 14px;
-  border-radius: 10px;
-  border: 1px solid #e5e7eb;
-  font-size: 14px;
-  margin-bottom: 14px;
-}
-
-.assignment-modal input:focus,
-.assignment-modal textarea:focus {
-  outline: none;
-  border-color: #2563eb;
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
-}
-.assignment-modal textarea {
-  resize: vertical;
-  min-height: 80px;
-}
-.assignment-box {
-  background: var(--bg-glass);
-  backdrop-filter: var(--blur);
-  border-radius: var(--radius-md);
-  padding: 18px;
-  border-left: 6px solid var(--primary);
-  box-shadow: var(--shadow-soft);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-  min-height: 220px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  border-radius: 12px;
+  padding: 16px 18px;
+  margin-bottom: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .assignment-box:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
 }
 
-/* Title */
 .assignment-box h4 {
-  color: var(--text-main);
-  margin-bottom: 8px;
+  margin: 0 0 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1f2937;
 }
 
-/* Text */
 .assignment-box p {
-  color: var(--text-muted);
-  font-size: 0.9rem;
+  margin: 4px 0;
+  font-size: 0.95rem;
+  color: #4b5563;
 }
 
-/* Dates */
-.assignment-dates {
-  font-size: 0.85rem;
-  color: #9fdcff;
-  margin-top: 8px;
-}
-
-/* Actions */
+/* ===============================
+   Assignment Actions
+================================ */
 .assignment-actions {
   display: flex;
   gap: 10px;
@@ -205,42 +38,170 @@
 }
 
 .assignment-actions button {
-  flex: 1;
-  padding: 8px;
-  border-radius: var(--radius-md);
+  padding: 6px 14px;
+  font-size: 0.85rem;
+  border-radius: 8px;
   border: none;
   cursor: pointer;
-  font-size: 0.85rem;
+  transition: background 0.2s ease, transform 0.1s ease;
 }
 
-.assignment-actions .edit {
-  background: var(--primary);
-  color: white;
+.assignment-actions button:hover {
+  transform: translateY(-1px);
 }
 
-.assignment-actions .delete {
-  background: var(--danger);
-  color: white;
+.assignment-actions button:first-child {
+  background: #e0f2fe;
+  color: #0369a1;
 }
 
-/* Status borders */
-.assignment-box.overdue {
-  border-left-color: var(--danger);
+.assignment-actions button:first-child:hover {
+  background: #bae6fd;
 }
 
-.assignment-box.upcoming {
-  border-left-color: var(--warning);
+.assignment-actions button:last-child {
+  background: #fee2e2;
+  color: #b91c1c;
 }
 
-.assignment-box.completed {
-  border-left-color: var(--success);
+.assignment-actions button:last-child:hover {
+  background: #fecaca;
 }
+
+/* ===============================
+   Modal Overlay
+================================ */
+.assignment-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+  z-index: 1000;
+}
+
+.assignment-modal-overlay.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ===============================
+   Modal Box
+================================ */
 .assignment-modal {
-  background: var(--bg-glass);
-  backdrop-filter: var(--blur);
-  padding: 24px;
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-hover);
-  color: var(--text-main);
+  background: #ffffff;
+  border-radius: 14px;
+  width: 90%;
+  max-width: 420px;
+  padding: 22px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  animation: modalScale 0.25s ease;
 }
+
+@keyframes modalScale {
+  from {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.assignment-modal h3 {
+  margin-bottom: 14px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #111827;
+}
+
+/* ===============================
+   Modal Inputs
+================================ */
+.assignment-modal input,
+.assignment-modal textarea {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  font-size: 0.9rem;
+  outline: none;
+}
+
+.assignment-modal textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.assignment-modal input:focus,
+.assignment-modal textarea:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.15);
+}
+
+/* ===============================
+   Modal Actions
+================================ */
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.btn-primary {
+  background: #3b82f6;
+  color: #ffffff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.btn-primary:hover {
+  background: #2563eb;
+}
+
+.btn-secondary {
+  background: #e5e7eb;
+  color: #374151;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.btn-secondary:hover {
+  background: #d1d5db;
+}
+
+.assignment-dates {
+  display: flex;
+  gap: 30px;
+  margin:0px;
+  padding: 0%;
+  font-size: 25px;
+  font-weight: 600;
+}
+
+
+/* Push title to secondary importance */
+.assignment-card h4,
+.assignment-card .assignment-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: #202124;
+}
+
+
+
+
 
