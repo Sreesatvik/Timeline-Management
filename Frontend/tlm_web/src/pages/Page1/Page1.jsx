@@ -101,8 +101,8 @@ function Main() {
     <div className="main-wrapper">
       {/* ===== Header ===== */}
       <header className="main-header">
-        <h1>📅 Timeline Manager</h1>
-        <p>Organize categories & assignments beautifully</p>
+        <h1>Timeline Manager</h1>
+        <p>Organize categories & assignments </p>
       </header>
 
       {/* ===== Add Category ===== */}
