@@ -24,11 +24,13 @@ export class AssignmentController {
         category_id,
         startDate: newStart,
         endDate: newEnd,
+        user_id: req.user._id,
       });
 
       // 2️⃣ Find overlapping future assignments
       const overlapping = await Assignment.find({
         category_id,
+        user_id: req.user._id,
         _id: { $ne: assignment._id },
         startDate: { $lt: assignment.endDate },
         endDate: { $gt: assignment.startDate },
@@ -71,8 +73,10 @@ export class AssignmentController {
         return res.status(400).json({ error: "category_id is required" });
       }
 
-      const assignments = await Assignment.find({ category_id })
-        .sort({ startDate: 1 });
+      const assignments = await Assignment.find({
+        category_id,
+        user_id: req.user._id
+      }).sort({ startDate: 1 });
 
       return res.status(200).json({ assignments });
     } catch (err) {
@@ -84,9 +88,11 @@ export class AssignmentController {
   async deleteAssignment(req, res) {
     try {
       const { id } = req.query;
-      console.log(req);
-      const deleted = await Assignment.findByIdAndDelete(id);
-      console.log(id);
+
+      const deleted = await Assignment.findOneAndDelete({
+        _id: id,
+        user_id: req.user._id
+      });
 
       if (!deleted) {
         return res.status(404).json({ error: "Assignment not found" });

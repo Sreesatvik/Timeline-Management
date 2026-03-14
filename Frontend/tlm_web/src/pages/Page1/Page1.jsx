@@ -2,7 +2,9 @@ import React from "react";
 import { useRef } from "react";
 import "./styles.css";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Category from "../../components/Catagory/Category.jsx";
+import { categoryAPI } from "../../api";
 
 function Main() {
   const [categories, setCategories] = useState([]);
@@ -10,16 +12,18 @@ function Main() {
   const [description, setDescription] = useState("");
 
   const scrollRef = useRef(null);
-
-
-
+  const navigate = useNavigate();
 
   useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      navigate("/");
+      return;
+    }
+
     const fetchCategories = async () => {
       try {
-        const response = await fetch(
-          "http://localhost:5000/api/categories/getallcategories"
-        );
+        const response = await categoryAPI.getAll();
         const data = await response.json();
 
         setCategories(
@@ -35,24 +39,17 @@ function Main() {
     };
 
     fetchCategories();
-  }, []);
+  }, [navigate]);
 
   const addCategory = async (e) => {
     e.preventDefault();
     if (!name) return alert("Enter category name");
 
     try {
-      const response = await fetch(
-        "http://localhost:5000/api/categories",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            title: name,
-            description
-          })
-        }
-      );
+      const response = await categoryAPI.create({
+        title: name,
+        description
+      });
 
       const saved = await response.json();
 
@@ -73,14 +70,16 @@ function Main() {
   };
 
   const deleteCategory = async (id) => {
-    await fetch(
-      `http://localhost:5000/api/categories/delete?id=${id}`,
-      { method: "DELETE" }
-    );
+    await categoryAPI.delete(id);
 
     setCategories((prev) =>
       prev.filter((cat) => cat.id !== id)
     );
+  };
+
+  const logout = () => {
+    localStorage.removeItem("token");
+    navigate("/");
   };
 
   const updateCategoryInUI = (updatedCategory) => {
@@ -101,8 +100,13 @@ function Main() {
     <div className="main-wrapper">
       {/* ===== Header ===== */}
       <header className="main-header">
-        <h1>Timeline Manager</h1>
-        <p>Organize categories & assignments </p>
+        <div>
+          <h1>Timeline Manager</h1>
+          <p>Organize categories & assignments </p>
+        </div>
+        <button className="logout-button" onClick={logout}>
+          Logout
+        </button>
       </header>
 
       {/* ===== Add Category ===== */}
