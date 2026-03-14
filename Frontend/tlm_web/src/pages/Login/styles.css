@@ -1,0 +1,49 @@
+.page-center {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+  background: #f2f2f2;
+}
+
+.google-card {
+  border-radius: 12px;
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.12);
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  background: #ffffff;
+}
+
+.google-card .card-header {
+  padding-bottom: 12px;
+}
+
+.google-card .card-title {
+  font-weight: 600;
+}
+
+.google-card .card-description {
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.google-card .card-content {
+  padding-top: 0;
+}
+
+.google-card .card-footer {
+  padding-top: 0;
+}
+
+.page-center::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top, rgba(255, 255, 255, 0.25), transparent 60%);
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.page-center > * {
+  position: relative;
+  z-index: 1;
+}

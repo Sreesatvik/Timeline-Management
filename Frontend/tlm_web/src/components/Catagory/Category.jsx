@@ -3,6 +3,7 @@ import { useRef } from "react";
 import "./styles.css";
 import { useState, useEffect } from "react";
 import Assignment from "../Assignment/assignment";
+import { assignmentAPI, categoryAPI } from "../../api";
 
 function Category({ title, description, onDelete, id, onUpdate }) {
   const [assignments, setAssignments] = useState([]);
@@ -31,9 +32,7 @@ const scrollRight = () => {
 
   const fetchAssignments = async () => {
       try {
-        const response = await fetch(
-          `http://localhost:5000/api/assignments/get_all_assignments?category_id=${id}`
-        );
+        const response = await assignmentAPI.getAll(id);
         const data = await response.json();
         setAssignments(data.assignments || []);
       } catch (error) {
@@ -60,20 +59,13 @@ const scrollRight = () => {
     }
 
     try {
-      const response = await fetch(
-        "http://localhost:5000/api/assignments/add_assignment",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            title: assignmentTitle,
-            description: assignmentDesc,
-            startDate: assignmentStartDate,
-            endDate: assignmentEndDate,
-            category_id: id
-          })
-        }
-      );
+      const response = await assignmentAPI.create({
+        title: assignmentTitle,
+        description: assignmentDesc,
+        startDate: assignmentStartDate,
+        endDate: assignmentEndDate,
+        category_id: id
+      });
 
       await fetchAssignments();
 
@@ -95,10 +87,7 @@ const scrollRight = () => {
   /* ===== Delete Assignment ===== */
   const removeAssignment = async (assignmentId) => {
     try {
-      await fetch(
-        `http://localhost:5000/api/assignments/delete_assignment?id=${assignmentId}`,
-        { method: "DELETE" }
-      );
+      await assignmentAPI.delete(assignmentId);
 
       setAssignments((prev) =>
         prev.filter((a) => a._id !== assignmentId)
@@ -111,17 +100,10 @@ const scrollRight = () => {
   /* ===== Update Category ===== */
   const updateCategory = async () => {
     try {
-      const res = await fetch(
-        `http://localhost:5000/api/categories/${id}`,
-        {
-          method: "PUT",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            title: editTitle,
-            description: editDesc
-          })
-        }
-      );
+      const res = await categoryAPI.update(id, {
+        title: editTitle,
+        description: editDesc
+      });
 
       const data = await res.json();
       if (!res.ok) {

@@ -17,9 +17,32 @@ export class UserController {
                 email,
                 password 
             });
-            res.status(201).json({ message: newUser });
+            res.status(201).json({
+                 message: "User registered successfully",
+                 token: await newUser.generateToken()
+            });
 
         } catch (error) {
+            res.status(500).json({ message: "Server Error" });
+        }
+    }
+
+    async login(req, res) {
+        try {
+            const { email, password } = req.body;
+            const user  = await Users.findOne({ email: email });
+            if (!user) {
+                return res.status(400).json({ message: "Invalid email or password" });
+            } 
+            const isMatch = await user.comparePassword(password);
+            if (!isMatch) {
+                return res.status(400).json({ message: "Invalid email or password" });
+            }   
+            res.status(200).json({
+                message: "Login successful",
+                token: await user.generateToken()
+            });
+        }   catch (error) { 
             res.status(500).json({ message: "Server Error" });
         }
     }

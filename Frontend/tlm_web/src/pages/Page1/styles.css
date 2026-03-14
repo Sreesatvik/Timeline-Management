@@ -34,6 +34,9 @@ body {
 /* ===== Header ===== */
 .main-header {
   margin-bottom: 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
 }
 
 .main-header h1 {
@@ -45,6 +48,21 @@ body {
 .main-header p {
   color: var(--text-secondary);
   font-size: 15px;
+}
+
+.logout-button {
+  padding: 10px 16px;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: #e53e3e;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.logout-button:hover {
+  background: #c53030;
 }
 
 /* ===== Category Form ===== */
