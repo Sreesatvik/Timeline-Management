@@ -2,8 +2,8 @@ import React from "react";
 import { useRef } from "react";
 import "./styles.css";
 import { useState, useEffect } from "react";
-import Assignment from "../Assignment/assignment";
-import { assignmentAPI, categoryAPI } from "../../api";
+import Assignment from "../assignments/assignment";
+import { assignmentAPI, categoryAPI } from "../../services/api";
 
 function Category({ title, description, onDelete, id, onUpdate }) {
   const [assignments, setAssignments] = useState([]);

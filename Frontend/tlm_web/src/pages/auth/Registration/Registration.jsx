@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { userAPI } from "@/api";
+import { userAPI } from "@/services/api";
 import "./styles.css";
 
 export default function Registration() {

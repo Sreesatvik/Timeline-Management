@@ -1,4 +1,4 @@
-import Assignment from "../models/assignment.js";
+import Assignment from "../../models/assignment.js";
 
 export class AssignmentController {
 

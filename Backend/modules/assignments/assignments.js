@@ -1,6 +1,6 @@
 import express from 'express';
-import { AssignmentController }  from '../controllers/AssignmentController.js';
-import { authenticate } from '../middlewares/auth-middleware.js';
+import { AssignmentController }  from './AssignmentController.js';
+import { authenticate } from '../../middleware/auth-middleware.js';
 
 const assignmentRouter = express.Router();
 

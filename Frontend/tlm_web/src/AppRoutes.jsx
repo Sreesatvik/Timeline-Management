@@ -1,8 +1,8 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Login from "./pages/Login/Login.jsx";
-import Registration from "./pages/Registration/Registration.jsx";
-import Page1 from "./pages/Page1/Page1.jsx";
+import Login from "./pages/auth/Login/Login.jsx";
+import Registration from "./pages/auth/Registration/Registration.jsx";
+import Page1 from "./pages/dashboard/Dashboard.jsx";
 
 
 function AppRoutes() {

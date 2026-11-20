@@ -3,8 +3,8 @@ import { useRef } from "react";
 import "./styles.css";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Category from "../../components/Catagory/Category.jsx";
-import { categoryAPI } from "../../api";
+import Category from "../../features/categories/Category.jsx";
+import { categoryAPI } from "../../services/api";
 
 function Main() {
   const [categories, setCategories] = useState([]);

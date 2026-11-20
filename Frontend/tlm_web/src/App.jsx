@@ -1,7 +1,7 @@
 import React from "react";
 import "./index.css";
-import Main from "./pages/Page1/Page1.jsx";
-import Login from "./pages/Login/Login.jsx";
+import Main from "./pages/dashboard/Dashboard.jsx";
+import Login from "./pages/auth/Login/Login.jsx";
 
 function App() {
  return (

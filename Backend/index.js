@@ -1,7 +1,7 @@
 
 import cors from "cors";
 import dotenv from "dotenv";
-import routes from "./routers/index.js";
+import routes from "./modules/index.js";
 import express from "express";
 import mongoose from "mongoose";
 

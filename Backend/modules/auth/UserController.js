@@ -1,5 +1,5 @@
-import User from '../models/user.js';
-import Users from '../models/user.js';
+import User from '../../models/user.js';
+import Users from '../../models/user.js';
 import bcrypt from 'bcryptjs';
 export class UserController {
 

@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Main from "./pages/Page1/Page1.jsx";
+import Main from "./Dashboard.jsx";
 
 function AppRoutes() {
   return (

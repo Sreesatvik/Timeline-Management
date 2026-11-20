@@ -1,5 +1,5 @@
-import Category from '../models/category.js';
-import Assignment from '../models/assignment.js';
+import Category from '../../models/category.js';
+import Assignment from '../../models/assignment.js';
 
 export class categoryController {
 
